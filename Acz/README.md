@@ -6,7 +6,6 @@ It ensures that files are decompressed correctly and validates their integrity u
 ## ✨ Features
 - Extract multiple `.zip` files into a chosen root folder.
 - Automatically creates subfolders named after each archive.
-- Verifies extracted files against CRC32 values stored in the archive.
 - Reports missing files, mismatched CRCs, and other extraction errors.
 - Supports quoted file paths and multiple arguments.
 - Provides clear error counts at the end of execution.
@@ -46,15 +45,11 @@ Acz.exe -fs "archive.zip"
 
 The tool reports warnings and errors during extraction:
 
-`OriginFileNotFoundException = Source archive file not found.`
-
 `ExtractedFileNotFoundException = Expected file missing after extraction.`
 
 `ExtractedFolderNotFoundException = Destination folder missing or inaccessible.`
 
-`EmptyCRC32Exception = Archive entry has no CRC32 stored (zero or missing).`
-
-`MismatchCRC32Exception = Extracted file’s CRC32 does not match the archive’s stored CRC32.`
+`MismatchCRC32Warning = Extracted file’s CRC32 does not match the archive’s stored CRC32.`
 
 ## At the end, the program prints a summary:
 
@@ -83,10 +78,9 @@ On startup, Acz prints assembly version details:
 
 ## Dependencies
 
-This project uses [SharpZipLib](https://github.com/icsharpcode/SharpZipLib)  
-for CRC32 verification of extracted ZIP files.
+This project uses [SharpZipLib](https://github.com/icsharpcode/SharpZipLib) for CRC32 verification of extracted ZIP files.
 
-Install via NuGet:
+Installable via NuGet:
 ```bash
 dotnet add package SharpZipLib
 ```
