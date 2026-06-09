@@ -108,7 +108,7 @@ namespace Acz
                     }
                 Tail:
                     passed++;
-                    if (((DateTime.Now - trigger).TotalMilliseconds > 2999) || (zipFile.Count == passed))
+                    if (((DateTime.Now - trigger).TotalMilliseconds > 5999) || (zipFile.Count == passed))
                     {
                         Console.WriteLine($"resolved {zipFile.Count}/{passed}");
                         trigger = DateTime.Now;
