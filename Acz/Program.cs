@@ -52,6 +52,7 @@ namespace Acz
 
             string[] filePaths = [];
             string rootFolder = string.Empty;
+            bool verifyOnly = false;
 
             for (ushort i = 0; i < args.Length; i++)
             {
@@ -85,6 +86,10 @@ namespace Acz
                         Console.WriteLine("Error: Missing root folder after -r");
                         return;
                     }
+                }
+                else if (arg == "-verify")
+                {
+                    verifyOnly = true;
                 }
                 else
                 {
@@ -136,8 +141,11 @@ namespace Acz
                     try
                     {
                         Console.WriteLine($"Begin for '{file}'");
-                        Directory.CreateDirectory(extractPath);
-                        ZipFile.ExtractToDirectory(file, extractPath, entryNameEncoding: System.Text.Encoding.UTF8, overwriteFiles: true);
+                        if (!verifyOnly)
+                        {
+                            Directory.CreateDirectory(extractPath);
+                            ZipFile.ExtractToDirectory(file, extractPath, entryNameEncoding: System.Text.Encoding.UTF8, overwriteFiles: true);
+                        }
                         Console.WriteLine($"Verify...");
                         ZipVerifier.VerifyZipCrc(file, extractPath);
                     }
@@ -175,6 +183,7 @@ namespace Acz
             Console.WriteLine("Options:");
             Console.WriteLine("  -fs <files...>   List of .zip files (quoted paths allowed, separated by spaces)");
             Console.WriteLine("  -r <folder>      Root folder to extract archives into");
+            Console.WriteLine("  -verify          Only verify the integrity of the already extracted files, skip extraction");
             Console.WriteLine("  -h, --help, /?   Show this help message");
         }
     }
