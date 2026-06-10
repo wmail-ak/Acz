@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Ignore Visual Studio launch profiles
-Properties/launchSettings.json
+launchSettings.json
