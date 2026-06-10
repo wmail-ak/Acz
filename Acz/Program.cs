@@ -18,10 +18,6 @@
  * - Always review the LICENSE file before distribution.
  */
 
-using Acz;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.IO.Compression;
 using System.Reflection;
 
@@ -91,6 +87,11 @@ namespace Acz
                 {
                     verifyOnly = true;
                 }
+                else if (arg == "-test")
+                {
+                    TestIntegrity.TestDestinationIntegrity(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)?.TrimEnd(Path.DirectorySeparatorChar) ?? "");
+                    return;
+                }
                 else
                 {
                     Console.WriteLine($"Error: Unknown option '{arg}'");
@@ -124,6 +125,8 @@ namespace Acz
 
             ushort Errors = 0;
 
+            ZipVerifier ObjZipVerifier = new();
+
             foreach (string file in filePaths)
             {
                 if (!File.Exists(file))
@@ -147,7 +150,7 @@ namespace Acz
                             ZipFile.ExtractToDirectory(file, extractPath, entryNameEncoding: System.Text.Encoding.UTF8, overwriteFiles: true);
                         }
                         Console.WriteLine($"Verify...");
-                        ZipVerifier.VerifyZipCrc(file, extractPath);
+                        ObjZipVerifier.VerifyZipCrc(file, extractPath);
                     }
                     catch (ExtractedFileNotFoundException ex)
                     {

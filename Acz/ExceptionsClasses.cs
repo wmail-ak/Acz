@@ -18,13 +18,9 @@
  * - Always review the LICENSE file before distribution.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Acz
 {
-    public class AczPathExceptionException : Exception
+    class AczPathExceptionException : Exception
     {
         public AczPathExceptionException() { }
         public AczPathExceptionException(string message) : base(message) { }
@@ -32,7 +28,7 @@ namespace Acz
             : base(message, inner) { }
     }
 
-    public class OriginFileNotFoundException : AczPathExceptionException
+    class OriginFileNotFoundException : AczPathExceptionException
     {
         public OriginFileNotFoundException() { }
         public OriginFileNotFoundException(string message)
@@ -41,7 +37,7 @@ namespace Acz
             : base(message, inner) { }
     }
 
-    public class ExtractedFileNotFoundException : AczPathExceptionException
+    class ExtractedFileNotFoundException : AczPathExceptionException
     {
         public ExtractedFileNotFoundException() { }
         public ExtractedFileNotFoundException(string message)
@@ -50,7 +46,7 @@ namespace Acz
             : base(message, inner) { }
     }
 
-    public class DestinationFolderNotFoundException : AczPathExceptionException
+    class DestinationFolderNotFoundException : AczPathExceptionException
     {
         public DestinationFolderNotFoundException() { }
         public DestinationFolderNotFoundException(string message)
@@ -59,7 +55,7 @@ namespace Acz
             : base(message, inner) { }
     }
 
-    public class ExtractedFolderNotFoundException : AczPathExceptionException
+    class ExtractedFolderNotFoundException : AczPathExceptionException
     {
         public ExtractedFolderNotFoundException() { }
         public ExtractedFolderNotFoundException(string message)
@@ -68,7 +64,7 @@ namespace Acz
             : base(message, inner) { }
     }
 
-    public class CRC32Exception : Exception
+    class CRC32Exception : Exception
     {
         public CRC32Exception() { }
         public CRC32Exception(string message) : base(message) { }
@@ -76,7 +72,7 @@ namespace Acz
             : base(message, inner) { }
     }
 
-    public class EmptyCRC32Exception : CRC32Exception
+    class EmptyCRC32Exception : CRC32Exception
     {
         public EmptyCRC32Exception() { }
         public EmptyCRC32Exception(string message) : base(message) { }
@@ -85,12 +81,11 @@ namespace Acz
 
     }
 
-    public class MismatchCRC32Exception : CRC32Exception
+    class MismatchCRC32Exception : CRC32Exception
     {
         public MismatchCRC32Exception() { }
         public MismatchCRC32Exception(string message) : base(message) { }
         public MismatchCRC32Exception(string message, Exception inner)
             : base(message, inner) { }
     }
-
 }
