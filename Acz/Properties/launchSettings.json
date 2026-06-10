@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Acz": {
+      "commandName": "Project",
+      "commandLineArgs": "-fs \"C:\\Users\\cloud\\Downloads\\edk2-edk2-stable202605.zip\""
+    },
+    "Profile 1": {
+      "commandName": "Project",
+      "commandLineArgs": "-test"
+    }
+  }
+}
